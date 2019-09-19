@@ -29,7 +29,14 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.invertButton = new System.Windows.Forms.Button();
+            this.colorButton = new System.Windows.Forms.Button();
+            this.brightnessBar = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -40,22 +47,90 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // invertButton
+            // 
+            this.invertButton.Location = new System.Drawing.Point(518, 399);
+            this.invertButton.Name = "invertButton";
+            this.invertButton.Size = new System.Drawing.Size(80, 32);
+            this.invertButton.TabIndex = 1;
+            this.invertButton.Text = "Invert";
+            this.invertButton.UseVisualStyleBackColor = true;
+            // 
+            // colorButton
+            // 
+            this.colorButton.Location = new System.Drawing.Point(291, 400);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(81, 30);
+            this.colorButton.TabIndex = 2;
+            this.colorButton.Text = "Color...";
+            this.colorButton.UseVisualStyleBackColor = true;
+            // 
+            // brightnessBar
+            // 
+            this.brightnessBar.AutoSize = false;
+            this.brightnessBar.Location = new System.Drawing.Point(58, 416);
+            this.brightnessBar.Name = "brightnessBar";
+            this.brightnessBar.Size = new System.Drawing.Size(104, 56);
+            this.brightnessBar.TabIndex = 3;
+            this.brightnessBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(32, 396);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Light";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(157, 396);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Dark";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(70, 455);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 17);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Brightness";
+            // 
             // Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 498);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.brightnessBar);
+            this.Controls.Add(this.colorButton);
+            this.Controls.Add(this.invertButton);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Edit";
             this.Text = "Edit Photo";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button invertButton;
+        private System.Windows.Forms.Button colorButton;
+        private System.Windows.Forms.TrackBar brightnessBar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
