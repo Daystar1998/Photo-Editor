@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,12 @@ namespace PhotoEditor {
 
 		private void CancelButton_Click(object sender, EventArgs e) {
 
+			this.Close();
+		}
+
+		private void SaveButton_Click(object sender, EventArgs e) {
+
+			image.Save(fileName, ImageFormat.Jpeg);
 			this.Close();
 		}
 	}
