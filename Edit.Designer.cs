@@ -45,8 +45,11 @@
 			// 
 			// pictureBox1
 			// 
+			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox1.Location = new System.Drawing.Point(10, 10);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(449, 304);
 			this.pictureBox1.TabIndex = 0;
@@ -55,7 +58,7 @@
 			// invertButton
 			// 
 			this.invertButton.Location = new System.Drawing.Point(369, 35);
-			this.invertButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.invertButton.Margin = new System.Windows.Forms.Padding(2);
 			this.invertButton.Name = "invertButton";
 			this.invertButton.Size = new System.Drawing.Size(60, 26);
 			this.invertButton.TabIndex = 1;
@@ -65,7 +68,7 @@
 			// colorButton
 			// 
 			this.colorButton.Location = new System.Drawing.Point(199, 36);
-			this.colorButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.colorButton.Margin = new System.Windows.Forms.Padding(2);
 			this.colorButton.Name = "colorButton";
 			this.colorButton.Size = new System.Drawing.Size(61, 24);
 			this.colorButton.TabIndex = 2;
@@ -76,7 +79,7 @@
 			// 
 			this.brightnessBar.AutoSize = false;
 			this.brightnessBar.Location = new System.Drawing.Point(20, 36);
-			this.brightnessBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.brightnessBar.Margin = new System.Windows.Forms.Padding(2);
 			this.brightnessBar.Name = "brightnessBar";
 			this.brightnessBar.Size = new System.Drawing.Size(91, 36);
 			this.brightnessBar.TabIndex = 3;
@@ -160,7 +163,7 @@
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.pictureBox1);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "Edit";
 			this.Text = "Edit Photo";
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -11,7 +11,6 @@ using System.IO;
 
 namespace PhotoEditor {
 
-	// TODO: Anchor the picture box to all sides after inserting an image to see if it scales correctly without going behind or in front of other items
 	public partial class Edit : Form {
 
 		private Image image;
