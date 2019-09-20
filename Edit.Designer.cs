@@ -32,9 +32,9 @@
 			this.invertButton = new System.Windows.Forms.Button();
 			this.colorButton = new System.Windows.Forms.Button();
 			this.brightnessBar = new System.Windows.Forms.TrackBar();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
+			this.lightLabel = new System.Windows.Forms.Label();
+			this.DarkLabel = new System.Windows.Forms.Label();
+			this.brightnessLabel = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.saveButton = new System.Windows.Forms.Button();
@@ -83,46 +83,46 @@
 			this.brightnessBar.Tag = "";
 			this.brightnessBar.TickStyle = System.Windows.Forms.TickStyle.None;
 			// 
-			// label1
+			// lightLabel
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(4, 21);
-			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(30, 13);
-			this.label1.TabIndex = 4;
-			this.label1.Text = "Light";
+			this.lightLabel.AutoSize = true;
+			this.lightLabel.Location = new System.Drawing.Point(4, 21);
+			this.lightLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lightLabel.Name = "lightLabel";
+			this.lightLabel.Size = new System.Drawing.Size(30, 13);
+			this.lightLabel.TabIndex = 4;
+			this.lightLabel.Text = "Light";
 			// 
-			// label2
+			// DarkLabel
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(98, 21);
-			this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(30, 13);
-			this.label2.TabIndex = 5;
-			this.label2.Text = "Dark";
+			this.DarkLabel.AutoSize = true;
+			this.DarkLabel.Location = new System.Drawing.Point(98, 21);
+			this.DarkLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.DarkLabel.Name = "DarkLabel";
+			this.DarkLabel.Size = new System.Drawing.Size(30, 13);
+			this.DarkLabel.TabIndex = 5;
+			this.DarkLabel.Text = "Dark";
 			// 
-			// label3
+			// brightnessLabel
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(36, 59);
-			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(56, 13);
-			this.label3.TabIndex = 6;
-			this.label3.Text = "Brightness";
+			this.brightnessLabel.AutoSize = true;
+			this.brightnessLabel.Location = new System.Drawing.Point(36, 59);
+			this.brightnessLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.brightnessLabel.Name = "brightnessLabel";
+			this.brightnessLabel.Size = new System.Drawing.Size(56, 13);
+			this.brightnessLabel.TabIndex = 6;
+			this.brightnessLabel.Text = "Brightness";
 			// 
 			// groupBox1
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox1.Controls.Add(this.label3);
+			this.groupBox1.Controls.Add(this.brightnessLabel);
 			this.groupBox1.Controls.Add(this.invertButton);
 			this.groupBox1.Controls.Add(this.brightnessBar);
-			this.groupBox1.Controls.Add(this.label2);
+			this.groupBox1.Controls.Add(this.DarkLabel);
 			this.groupBox1.Controls.Add(this.colorButton);
-			this.groupBox1.Controls.Add(this.label1);
+			this.groupBox1.Controls.Add(this.lightLabel);
 			this.groupBox1.Location = new System.Drawing.Point(10, 319);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(447, 83);
@@ -175,9 +175,9 @@
         private System.Windows.Forms.Button invertButton;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.TrackBar brightnessBar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lightLabel;
+        private System.Windows.Forms.Label DarkLabel;
+        private System.Windows.Forms.Label brightnessLabel;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Button saveButton;
