@@ -85,6 +85,7 @@
 			this.brightnessBar.TabIndex = 3;
 			this.brightnessBar.Tag = "";
 			this.brightnessBar.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.brightnessBar.Value = 5;
 			// 
 			// lightLabel
 			// 
