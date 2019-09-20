@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PhotoEditor
-{
-    public partial class Edit : Form
-    {
-        public Edit()
-        {
-            InitializeComponent();
-        }
-    }
+namespace PhotoEditor {
+
+	// TODO: Anchor the picture box to all sides after inserting an image to see if it scales correctly without going behind or in front of other items
+	public partial class Edit : Form {
+
+		public Edit() {
+
+			InitializeComponent();
+		}
+
+		private void CancelButton_Click(object sender, EventArgs e) {
+
+			this.Close();
+		}
+	}
 }
