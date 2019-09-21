@@ -117,6 +117,7 @@ namespace PhotoEditor
 
         private void detailToolStripMenuItem_Click(object sender, EventArgs e)
         {
+			detailToolStripMenuItem.Checked = true;
             smallToolStripMenuItem.Checked = false;
             largeToolStripMenuItem.Checked = false;
 			//Small image Icons and Image data (creation date, size)
@@ -126,7 +127,8 @@ namespace PhotoEditor
         private void smallToolStripMenuItem_Click(object sender, EventArgs e)
         {
             detailToolStripMenuItem.Checked = false;
-            largeToolStripMenuItem.Checked = false;
+			smallToolStripMenuItem.Checked = true;
+			largeToolStripMenuItem.Checked = false;
 			//Small image Icons
 			listView1.View = View.SmallIcon;
 		}
@@ -135,6 +137,7 @@ namespace PhotoEditor
         {
             detailToolStripMenuItem.Checked = false;
             smallToolStripMenuItem.Checked = false;
+			largeToolStripMenuItem.Checked = true;
 			//Large image Icons
 			listView1.View = View.LargeIcon;
 		}
