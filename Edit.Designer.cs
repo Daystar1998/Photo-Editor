@@ -83,17 +83,20 @@
 			this.brightnessBar.AutoSize = false;
 			this.brightnessBar.Location = new System.Drawing.Point(20, 36);
 			this.brightnessBar.Margin = new System.Windows.Forms.Padding(2);
+			this.brightnessBar.Maximum = 100;
 			this.brightnessBar.Name = "brightnessBar";
 			this.brightnessBar.Size = new System.Drawing.Size(91, 36);
 			this.brightnessBar.TabIndex = 3;
 			this.brightnessBar.Tag = "";
 			this.brightnessBar.TickStyle = System.Windows.Forms.TickStyle.None;
-			this.brightnessBar.Value = 5;
+			this.brightnessBar.Value = 50;
+			this.brightnessBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BrightnessBar_MouseDown);
+			this.brightnessBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BrightnessBar_MouseUp);
 			// 
 			// lightLabel
 			// 
 			this.lightLabel.AutoSize = true;
-			this.lightLabel.Location = new System.Drawing.Point(4, 21);
+			this.lightLabel.Location = new System.Drawing.Point(90, 21);
 			this.lightLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.lightLabel.Name = "lightLabel";
 			this.lightLabel.Size = new System.Drawing.Size(30, 13);
@@ -103,7 +106,7 @@
 			// DarkLabel
 			// 
 			this.DarkLabel.AutoSize = true;
-			this.DarkLabel.Location = new System.Drawing.Point(98, 21);
+			this.DarkLabel.Location = new System.Drawing.Point(17, 21);
 			this.DarkLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.DarkLabel.Name = "DarkLabel";
 			this.DarkLabel.Size = new System.Drawing.Size(30, 13);
