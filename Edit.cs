@@ -131,5 +131,73 @@ namespace PhotoEditor {
 			saveButton.Enabled = true;
 			cancelButton.Enabled = true;
 		}
+
+		private async void ColorButton_Click(object sender, EventArgs e) {
+
+			ColorDialog colorDialog = new ColorDialog();
+
+			DisableComponents();
+
+			if (colorDialog.ShowDialog() == DialogResult.OK) {
+
+				Bitmap image = (Bitmap)pictureBox1.Image.Clone();
+
+				Transforming transformingWindow = new Transforming();
+
+				CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+				CancellationToken cancellationToken = cancellationTokenSource.Token;
+
+				transformingWindow.OnCancel += () => {
+
+					cancellationTokenSource.Cancel();
+				};
+
+				transformingWindow.Show();
+
+				await Task.Run(() => {
+
+					int currentPercentage = 0;
+					int totalPixels = image.Width * image.Height;
+
+					for (int y = 0; y < image.Height && !cancellationToken.IsCancellationRequested; y++) {
+
+						for (int x = 0; x < image.Width && !cancellationToken.IsCancellationRequested; x++) {
+
+							Color color = image.GetPixel(x, y);
+							double averageColorPercentage = ((color.R + color.G + color.B) / 3.0) / 255.0;
+							Color newColor = Color.FromArgb((int)(colorDialog.Color.R * averageColorPercentage), (int)(colorDialog.Color.G * averageColorPercentage), (int)(colorDialog.Color.B * averageColorPercentage));
+							image.SetPixel(x, y, newColor);
+
+							int pixelsChanged = y * image.Width + x;
+							int percentage = pixelsChanged * 100 / totalPixels;
+
+							if (currentPercentage < percentage) {
+
+								currentPercentage = percentage;
+
+								transformingWindow.Invoke((Action)delegate () {
+
+									// Hacky way of keeping the progress bar updating at the correct speed
+									transformingWindow.ProgressPercentage = currentPercentage + 1;
+									transformingWindow.ProgressPercentage = currentPercentage;
+								});
+							}
+						}
+					}
+
+					if (!cancellationToken.IsCancellationRequested) {
+
+						this.Invoke((Action)delegate () {
+
+							pictureBox1.Image = image;
+						});
+					}
+				});
+
+				transformingWindow.Close();
+			}
+
+			EnableComponents();
+		}
 	}
 }

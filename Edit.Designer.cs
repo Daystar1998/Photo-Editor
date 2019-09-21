@@ -76,6 +76,7 @@
 			this.colorButton.TabIndex = 2;
 			this.colorButton.Text = "Color...";
 			this.colorButton.UseVisualStyleBackColor = true;
+			this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
 			// 
 			// brightnessBar
 			// 
