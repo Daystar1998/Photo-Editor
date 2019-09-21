@@ -29,31 +29,56 @@
         private void InitializeComponent()
         {
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cancelButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// progressBar1
 			// 
-			this.progressBar1.Location = new System.Drawing.Point(44, 34);
+			this.progressBar1.Location = new System.Drawing.Point(11, 72);
 			this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.progressBar1.Name = "progressBar1";
 			this.progressBar1.Size = new System.Drawing.Size(284, 37);
 			this.progressBar1.TabIndex = 0;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(122, 35);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(70, 13);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Please wait...";
+			// 
+			// cancelButton
+			// 
+			this.cancelButton.Location = new System.Drawing.Point(117, 127);
+			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.Size = new System.Drawing.Size(75, 23);
+			this.cancelButton.TabIndex = 2;
+			this.cancelButton.Text = "Cancel";
+			this.cancelButton.UseVisualStyleBackColor = true;
+			// 
 			// Transforming
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(374, 115);
+			this.ClientSize = new System.Drawing.Size(306, 162);
+			this.Controls.Add(this.cancelButton);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.progressBar1);
 			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.Name = "Transforming";
 			this.Text = "Transforming";
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ProgressBar progressBar1;
-    }
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button cancelButton;
+	}
 }
