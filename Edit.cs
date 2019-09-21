@@ -15,7 +15,11 @@ namespace PhotoEditor {
 
 	public partial class Edit : Form {
 
-		public Image Photo { get; private set; }
+		private delegate Color CalculateNewColor(Color previousColor);
+
+		public Image Photo {
+			get; private set;
+		}
 		private string fileName;
 		private int brightnessBarValue;
 
@@ -213,85 +217,33 @@ namespace PhotoEditor {
 
 				brightnessBarValue = brightnessBar.Value;
 
-				Bitmap image = (Bitmap)pictureBox1.Image.Clone();
-
-				DisableComponents();
-
-				Transforming transformingWindow = new Transforming();
-
-				CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-				CancellationToken cancellationToken = cancellationTokenSource.Token;
-
-				transformingWindow.OnCancel += () => {
-
-					cancellationTokenSource.Cancel();
-				};
-
-				transformingWindow.Show();
-
 				int amount = Convert.ToInt32(2 * (50 - brightnessBar.Value) * 0.01 * 255);
 
-				await Task.Run(() => {
+				CalculateNewColor calculateNewColor = new CalculateNewColor((previousColor) => {
 
-					int currentPercentage = 0;
-					int totalPixels = image.Width * image.Height;
+					int newRed = previousColor.R - amount;
+					int newGreen = previousColor.G - amount;
+					int newBlue = previousColor.B - amount;
 
-					for (int y = 0; y < image.Height && !cancellationToken.IsCancellationRequested; y++) {
+					if (newRed < 0)
+						newRed = 0;
+					else if (newRed > 255)
+						newRed = 255;
 
-						for (int x = 0; x < image.Width && !cancellationToken.IsCancellationRequested; x++) {
+					if (newGreen < 0)
+						newGreen = 0;
+					else if (newGreen > 255)
+						newGreen = 255;
 
-							Color color = image.GetPixel(x, y);
-							int newRed = color.R - amount;
-							int newGreen = color.G - amount;
-							int newBlue = color.B - amount;
+					if (newBlue < 0)
+						newBlue = 0;
+					else if (newBlue > 255)
+						newBlue = 255;
 
-							if (newRed < 0)
-								newRed = 0;
-							else if (newRed > 255)
-								newRed = 255;
-
-							if (newGreen < 0)
-								newGreen = 0;
-							else if (newGreen > 255)
-								newGreen = 255;
-
-							if (newBlue < 0)
-								newBlue = 0;
-							else if (newBlue > 255)
-								newBlue = 255;
-
-							Color newColor = Color.FromArgb(newRed, newGreen, newBlue);
-							image.SetPixel(x, y, newColor);
-
-							int pixelsChanged = y * image.Width + x;
-							int percentage = pixelsChanged * 100 / totalPixels;
-
-							if (currentPercentage < percentage) {
-
-								currentPercentage = percentage;
-
-								transformingWindow.Invoke((Action)delegate () {
-
-									// Hacky way of keeping the progress bar updating at the correct speed
-									transformingWindow.ProgressPercentage = currentPercentage + 1;
-									transformingWindow.ProgressPercentage = currentPercentage;
-								});
-							}
-						}
-					}
-
-					if (!cancellationToken.IsCancellationRequested) {
-
-						this.Invoke((Action)delegate () {
-
-							pictureBox1.Image = image;
-						});
-					}
+					return Color.FromArgb(newRed, newGreen, newBlue);
 				});
 
-				transformingWindow.Close();
-
-				EnableComponents();
+				await TransformImage(calculateNewColor);
 			}
 		}
 
@@ -314,6 +266,71 @@ namespace PhotoEditor {
 				Photo.Save(fileName, ImageFormat.Jpeg);
 				this.Close();
 			}
+		}
+
+		private async Task TransformImage(CalculateNewColor calculateNewColor) {
+
+			Bitmap image = (Bitmap)pictureBox1.Image.Clone();
+
+			DisableComponents();
+
+			Transforming transformingWindow = new Transforming();
+
+			CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+			CancellationToken cancellationToken = cancellationTokenSource.Token;
+
+			transformingWindow.OnCancel += () => {
+
+				cancellationTokenSource.Cancel();
+			};
+
+			transformingWindow.Show();
+
+			int amount = Convert.ToInt32(2 * (50 - brightnessBar.Value) * 0.01 * 255);
+
+			await Task.Run(() => {
+
+				int currentPercentage = 0;
+				int totalPixels = image.Width * image.Height;
+
+				for (int y = 0; y < image.Height && !cancellationToken.IsCancellationRequested; y++) {
+
+					for (int x = 0; x < image.Width && !cancellationToken.IsCancellationRequested; x++) {
+
+						Color color = image.GetPixel(x, y);
+
+						Color newColor = calculateNewColor(color);
+						image.SetPixel(x, y, newColor);
+
+						int pixelsChanged = y * image.Width + x;
+						int percentage = pixelsChanged * 100 / totalPixels;
+
+						if (currentPercentage < percentage) {
+
+							currentPercentage = percentage;
+
+							transformingWindow.Invoke((Action)delegate () {
+
+								// Hacky way of keeping the progress bar updating at the correct speed
+								transformingWindow.ProgressPercentage = currentPercentage + 1;
+								transformingWindow.ProgressPercentage = currentPercentage;
+							});
+						}
+					}
+				}
+
+				if (!cancellationToken.IsCancellationRequested) {
+
+					this.Invoke((Action)delegate () {
+
+						pictureBox1.Image = image;
+					});
+				}
+			});
+
+			transformingWindow.Close();
+
+			EnableComponents();
 		}
 	}
 }
