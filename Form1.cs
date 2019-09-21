@@ -66,7 +66,7 @@ namespace PhotoEditor
                 {
                     ListViewItem item = null;
                     Image img = null;
-                    item = new ListViewItem(file.Name, i++);
+                    item = new ListViewItem(file.FullName, i++);
                     Invoke((Action)delegate ()
                     {
                         listView1.Items.Add(item);
@@ -76,8 +76,8 @@ namespace PhotoEditor
                         byte[] bytes = System.IO.File.ReadAllBytes(file.FullName);
                         MemoryStream ms = new MemoryStream(bytes);
                         img = Image.FromStream(ms); // Use this instead of Image.FromFile()
-                        imageList.Images.Add(file.Name, img);
-                        Console.WriteLine("Filename: " + file.Name);
+                        imageList.Images.Add(file.FullName, img);
+                        Console.WriteLine("Filename: " + file.FullName);
                         Console.WriteLine("Last mod: " + file.LastWriteTime.ToString());
                         Console.WriteLine("File size: " + file.Length);
                     }
@@ -167,7 +167,9 @@ namespace PhotoEditor
             }
             string fileName = listView1.Items[selectedIndex].Text;
             //MessageBox.Show(fileName);
-            Image img = listView1.LargeImageList.Images[selectedIndex];
+            byte[] bytes = System.IO.File.ReadAllBytes(fileName);
+            MemoryStream ms = new MemoryStream(bytes);
+            Image img = Image.FromStream(ms);
             Edit editor = new Edit(img, fileName);
             editor.Show();
         }
