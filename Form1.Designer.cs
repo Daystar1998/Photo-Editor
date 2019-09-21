@@ -115,7 +115,7 @@
             // 
             this.detailToolStripMenuItem.CheckOnClick = true;
             this.detailToolStripMenuItem.Name = "detailToolStripMenuItem";
-            this.detailToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.detailToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.detailToolStripMenuItem.Text = "&Detail";
             this.detailToolStripMenuItem.Click += new System.EventHandler(this.detailToolStripMenuItem_Click);
             // 
@@ -123,7 +123,7 @@
             // 
             this.smallToolStripMenuItem.CheckOnClick = true;
             this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
-            this.smallToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.smallToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.smallToolStripMenuItem.Text = "&Small";
             this.smallToolStripMenuItem.Click += new System.EventHandler(this.smallToolStripMenuItem_Click);
             // 
@@ -131,7 +131,7 @@
             // 
             this.largeToolStripMenuItem.CheckOnClick = true;
             this.largeToolStripMenuItem.Name = "largeToolStripMenuItem";
-            this.largeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.largeToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.largeToolStripMenuItem.Text = "&Large";
             this.largeToolStripMenuItem.Click += new System.EventHandler(this.largeToolStripMenuItem_Click);
             // 
@@ -157,14 +157,17 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(175, 375);
             this.treeView1.TabIndex = 3;
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // listView1
             // 
             this.listView1.Location = new System.Drawing.Point(222, 46);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(468, 372);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
             // 
             // Main
             // 
