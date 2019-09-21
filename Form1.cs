@@ -119,22 +119,25 @@ namespace PhotoEditor
         {
             smallToolStripMenuItem.Checked = false;
             largeToolStripMenuItem.Checked = false;
-            //Small image Icons and Image data (creation date, size)
+			//Small image Icons and Image data (creation date, size)
+			listView1.View = View.Details;
         }
 
         private void smallToolStripMenuItem_Click(object sender, EventArgs e)
         {
             detailToolStripMenuItem.Checked = false;
             largeToolStripMenuItem.Checked = false;
-            //Small image Icons
-        }
+			//Small image Icons
+			listView1.View = View.SmallIcon;
+		}
 
         private void largeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             detailToolStripMenuItem.Checked = false;
             smallToolStripMenuItem.Checked = false;
-            //Large image Icons
-        }
+			//Large image Icons
+			listView1.View = View.LargeIcon;
+		}
 
         private void aboutToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
