@@ -15,7 +15,7 @@ namespace PhotoEditor {
 
 	public partial class Edit : Form {
 
-		private Image image;
+		public Image Photo { get; private set; }
 		private string fileName;
 		private int brightnessBarValue;
 
@@ -33,8 +33,8 @@ namespace PhotoEditor {
 				throw new ArgumentNullException(nameof(fileName));
 			}
 
-			this.image = (Image)image.Clone();
-			pictureBox1.Image = this.image;
+			this.Photo = (Image)image.Clone();
+			pictureBox1.Image = this.Photo;
 			this.fileName = fileName;
 		}
 
@@ -45,7 +45,8 @@ namespace PhotoEditor {
 
 		private void SaveButton_Click(object sender, EventArgs e) {
 
-			image.Save(fileName, ImageFormat.Jpeg);
+			this.Photo = pictureBox1.Image;
+			Photo.Save(fileName, ImageFormat.Jpeg);
 			this.Close();
 		}
 
@@ -291,6 +292,27 @@ namespace PhotoEditor {
 				transformingWindow.Close();
 
 				EnableComponents();
+			}
+		}
+
+		private void SaveAsButton_Click(object sender, EventArgs e) {
+
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+			int indexOfFinalBackSlash = fileName.LastIndexOf('\\');
+
+			saveFileDialog.InitialDirectory = fileName.Substring(0, indexOfFinalBackSlash);
+			saveFileDialog.FileName = fileName.Substring(indexOfFinalBackSlash + 1, fileName.Length - indexOfFinalBackSlash - 1);
+			saveFileDialog.Filter = "JPeg Image|*.jpg";
+			saveFileDialog.DefaultExt = ".jpg";
+			saveFileDialog.AddExtension = true;
+
+			if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+
+				this.Photo = pictureBox1.Image;
+				this.fileName = saveFileDialog.FileName;
+				Photo.Save(fileName, ImageFormat.Jpeg);
+				this.Close();
 			}
 		}
 	}
