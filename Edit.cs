@@ -17,9 +17,8 @@ namespace PhotoEditor {
 
 		private delegate Color CalculateNewColor(Color previousColor);
 
-		public Image Photo {
-			get; private set;
-		}
+		public Image Photo { get; private set; }
+
 		private string fileName;
 		private int brightnessBarValue;
 
@@ -54,6 +53,27 @@ namespace PhotoEditor {
 			this.Close();
 		}
 
+		private void SaveAsButton_Click(object sender, EventArgs e) {
+
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+			int indexOfFinalBackSlash = fileName.LastIndexOf('\\');
+
+			saveFileDialog.InitialDirectory = fileName.Substring(0, indexOfFinalBackSlash);
+			saveFileDialog.FileName = fileName.Substring(indexOfFinalBackSlash + 1, fileName.Length - indexOfFinalBackSlash - 1);
+			saveFileDialog.Filter = "JPeg Image|*.jpg";
+			saveFileDialog.DefaultExt = ".jpg";
+			saveFileDialog.AddExtension = true;
+
+			if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+
+				this.Photo = pictureBox1.Image;
+				this.fileName = saveFileDialog.FileName;
+				Photo.Save(fileName, ImageFormat.Jpeg);
+				this.Close();
+			}
+		}
+
 		private async void InvertButton_Click(object sender, EventArgs e) {
 
 			CalculateNewColor calculateNewColor = new CalculateNewColor((previousColor) => {
@@ -66,24 +86,6 @@ namespace PhotoEditor {
 			});
 
 			await TransformImage(calculateNewColor);
-		}
-
-		private void DisableComponents() {
-
-			brightnessBar.Enabled = false;
-			colorButton.Enabled = false;
-			invertButton.Enabled = false;
-			saveButton.Enabled = false;
-			cancelButton.Enabled = false;
-		}
-
-		private void EnableComponents() {
-
-			brightnessBar.Enabled = true;
-			colorButton.Enabled = true;
-			invertButton.Enabled = true;
-			saveButton.Enabled = true;
-			cancelButton.Enabled = true;
 		}
 
 		private async void ColorButton_Click(object sender, EventArgs e) {
@@ -145,27 +147,6 @@ namespace PhotoEditor {
 				});
 
 				await TransformImage(calculateNewColor);
-			}
-		}
-
-		private void SaveAsButton_Click(object sender, EventArgs e) {
-
-			SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-			int indexOfFinalBackSlash = fileName.LastIndexOf('\\');
-
-			saveFileDialog.InitialDirectory = fileName.Substring(0, indexOfFinalBackSlash);
-			saveFileDialog.FileName = fileName.Substring(indexOfFinalBackSlash + 1, fileName.Length - indexOfFinalBackSlash - 1);
-			saveFileDialog.Filter = "JPeg Image|*.jpg";
-			saveFileDialog.DefaultExt = ".jpg";
-			saveFileDialog.AddExtension = true;
-
-			if (saveFileDialog.ShowDialog() == DialogResult.OK) {
-
-				this.Photo = pictureBox1.Image;
-				this.fileName = saveFileDialog.FileName;
-				Photo.Save(fileName, ImageFormat.Jpeg);
-				this.Close();
 			}
 		}
 
@@ -232,6 +213,24 @@ namespace PhotoEditor {
 			transformingWindow.Close();
 
 			EnableComponents();
+		}
+
+		private void DisableComponents() {
+
+			brightnessBar.Enabled = false;
+			colorButton.Enabled = false;
+			invertButton.Enabled = false;
+			saveButton.Enabled = false;
+			cancelButton.Enabled = false;
+		}
+
+		private void EnableComponents() {
+
+			brightnessBar.Enabled = true;
+			colorButton.Enabled = true;
+			invertButton.Enabled = true;
+			saveButton.Enabled = true;
+			cancelButton.Enabled = true;
 		}
 	}
 }
