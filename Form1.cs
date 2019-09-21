@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
@@ -77,7 +78,7 @@ namespace PhotoEditor
                         MemoryStream ms = new MemoryStream(bytes);
                         img = Image.FromStream(ms); // Use this instead of Image.FromFile()
                         imageList.Images.Add(file.FullName, img);
-                        Console.WriteLine("Filename: " + file.FullName);
+                        Console.WriteLine("Filename: " + file.Name);
                         Console.WriteLine("Last mod: " + file.LastWriteTime.ToString());
                         Console.WriteLine("File size: " + file.Length);
                     }
@@ -89,6 +90,8 @@ namespace PhotoEditor
                 Invoke((Action)delegate ()
                 {
                     listView1.LargeImageList = imageList;
+                    listView1.SmallImageList = imageList;
+                    listView1.StateImageList = imageList;
                 });
             });
         }
@@ -96,6 +99,24 @@ namespace PhotoEditor
         private void locateOnDiskToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Directly locates an image
+            OpenFileDialog openFile = new OpenFileDialog();
+            if(openFile.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+            {
+                string filePath = openFile.FileName;
+                if(Path.GetExtension(filePath) != ".jpg")
+                {
+                    MessageBox.Show("Must Choose a '.jpg' file.");
+                }
+                else
+                {
+                    byte[] bytes = System.IO.File.ReadAllBytes(filePath);
+                     MemoryStream ms = new MemoryStream(bytes);
+                     Image img = Image.FromStream(ms);
+                     Edit editor = new Edit(img, filePath);
+                     editor.Show();
+                }
+               
+            }
         }
 
         private void rootFolderToolStripMenuItem_Click(object sender, EventArgs e)
