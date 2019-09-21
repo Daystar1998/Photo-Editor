@@ -1,6 +1,6 @@
 ﻿namespace PhotoEditor
 {
-    partial class LoadingBar
+    partial class Transforming
     {
         /// <summary>
         /// Required designer variable.
@@ -28,25 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.SuspendLayout();
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(58, 42);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(378, 46);
-            this.progressBar1.TabIndex = 0;
-            // 
-            // LoadingBar
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 141);
-            this.Controls.Add(this.progressBar1);
-            this.Name = "LoadingBar";
-            this.Text = "Loading";
-            this.ResumeLayout(false);
+			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.SuspendLayout();
+			// 
+			// progressBar1
+			// 
+			this.progressBar1.Location = new System.Drawing.Point(44, 34);
+			this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.progressBar1.Name = "progressBar1";
+			this.progressBar1.Size = new System.Drawing.Size(284, 37);
+			this.progressBar1.TabIndex = 0;
+			// 
+			// Transforming
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(374, 115);
+			this.Controls.Add(this.progressBar1);
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Name = "Transforming";
+			this.Text = "Transforming";
+			this.ResumeLayout(false);
 
         }
 

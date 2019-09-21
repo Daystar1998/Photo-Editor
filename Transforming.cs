@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PhotoEditor
 {
-    public partial class LoadingBar : Form
+    public partial class Transforming : Form
     {
-        public LoadingBar()
+        public Transforming()
         {
             InitializeComponent();
         }
