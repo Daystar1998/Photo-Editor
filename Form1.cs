@@ -16,7 +16,7 @@ namespace PhotoEditor
         public Main()
         {
             InitializeComponent();
-            PopulateTreeView(@"../.."); //Defaults to the solution folder
+            PopulateTreeView(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)); //Defaults to the solution folder
         }
 
         private void PopulateTreeView(string filePath)
@@ -54,6 +54,9 @@ namespace PhotoEditor
 
         async Task GetFiles(DirectoryInfo filePath)
         {
+            //When loading the images from disk into the ListView, you will need to use an async method and Task so the UI
+            //thread is not locked. The code below discovers all the JPEG images in a directory
+
             await Task.Run(() =>
             {
                 DirectoryInfo homeDir = filePath;
@@ -88,8 +91,6 @@ namespace PhotoEditor
                 });
             });
         }
-            //When loading the images from disk into the ListView, you will need to use an async method and Task so the UI
-            //thread is not locked. The code below discovers all the JPEG images in a directory
 
         private void locateOnDiskToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -153,7 +154,11 @@ namespace PhotoEditor
 
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
-            /*
+            foreach (ListViewItem items in listView1.Items)
+            {
+
+            }
+           /*
             listView1.SelectedItems.
             string fileName;
             Image img;
