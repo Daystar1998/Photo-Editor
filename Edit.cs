@@ -142,68 +142,23 @@ namespace PhotoEditor {
 
 			ColorDialog colorDialog = new ColorDialog();
 
-			DisableComponents();
-
 			if (colorDialog.ShowDialog() == DialogResult.OK) {
 
-				Bitmap image = (Bitmap)pictureBox1.Image.Clone();
+				CalculateNewColor calculateNewColor = new CalculateNewColor((previousColor) => {
 
-				Transforming transformingWindow = new Transforming();
+					double averageColorPercentage = ((previousColor.R + previousColor.G + previousColor.B) / 3.0) / 255.0;
 
-				CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-				CancellationToken cancellationToken = cancellationTokenSource.Token;
+					int newRed = (int)(colorDialog.Color.R * averageColorPercentage);
+					int newGreen = (int)(colorDialog.Color.G * averageColorPercentage);
+					int newBlue = (int)(colorDialog.Color.B * averageColorPercentage);
 
-				transformingWindow.OnCancel += () => {
+					Color newColor = Color.FromArgb(newRed, newGreen, (int)(colorDialog.Color.B * averageColorPercentage));
 
-					cancellationTokenSource.Cancel();
-				};
-
-				transformingWindow.Show();
-
-				await Task.Run(() => {
-
-					int currentPercentage = 0;
-					int totalPixels = image.Width * image.Height;
-
-					for (int y = 0; y < image.Height && !cancellationToken.IsCancellationRequested; y++) {
-
-						for (int x = 0; x < image.Width && !cancellationToken.IsCancellationRequested; x++) {
-
-							Color color = image.GetPixel(x, y);
-							double averageColorPercentage = ((color.R + color.G + color.B) / 3.0) / 255.0;
-							Color newColor = Color.FromArgb((int)(colorDialog.Color.R * averageColorPercentage), (int)(colorDialog.Color.G * averageColorPercentage), (int)(colorDialog.Color.B * averageColorPercentage));
-							image.SetPixel(x, y, newColor);
-
-							int pixelsChanged = y * image.Width + x;
-							int percentage = pixelsChanged * 100 / totalPixels;
-
-							if (currentPercentage < percentage) {
-
-								currentPercentage = percentage;
-
-								transformingWindow.Invoke((Action)delegate () {
-
-									// Hacky way of keeping the progress bar updating at the correct speed
-									transformingWindow.ProgressPercentage = currentPercentage + 1;
-									transformingWindow.ProgressPercentage = currentPercentage;
-								});
-							}
-						}
-					}
-
-					if (!cancellationToken.IsCancellationRequested) {
-
-						this.Invoke((Action)delegate () {
-
-							pictureBox1.Image = image;
-						});
-					}
+					return Color.FromArgb(newRed, newGreen, newBlue);
 				});
 
-				transformingWindow.Close();
+				await TransformImage(calculateNewColor);
 			}
-
-			EnableComponents();
 		}
 
 		private void BrightnessBar_MouseDown(object sender, MouseEventArgs e) {
