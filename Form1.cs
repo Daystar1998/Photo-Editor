@@ -61,11 +61,12 @@ namespace PhotoEditor
             {
                 DirectoryInfo homeDir = filePath;
                 ImageList imageList = new ImageList();
+                int i = 0;
                 foreach (FileInfo file in homeDir.GetFiles("*.jpg"))
                 {
                     ListViewItem item = null;
                     Image img = null;
-                    item = new ListViewItem(file.Name, 1);
+                    item = new ListViewItem(file.Name, i++);
                     Invoke((Action)delegate ()
                     {
                         listView1.Items.Add(item);
@@ -154,16 +155,21 @@ namespace PhotoEditor
 
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
+            int i = 0;
+            int selectedIndex = 0;
             foreach (ListViewItem items in listView1.Items)
             {
-
+                if(listView1.Items[i].Selected)
+                {
+                    selectedIndex = i;
+                }
+                i++;
             }
-           /*
-            listView1.SelectedItems.
-            string fileName;
-            Image img;
+            string fileName = listView1.Items[selectedIndex].Text;
+            //MessageBox.Show(fileName);
+            Image img = listView1.LargeImageList.Images[selectedIndex];
             Edit editor = new Edit(img, fileName);
-            */
+            editor.Show();
         }
        
     }
