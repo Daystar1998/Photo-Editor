@@ -65,6 +65,7 @@
 			this.invertButton.TabIndex = 1;
 			this.invertButton.Text = "Invert";
 			this.invertButton.UseVisualStyleBackColor = true;
+			this.invertButton.Click += new System.EventHandler(this.InvertButton_Click);
 			// 
 			// colorButton
 			// 
