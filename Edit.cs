@@ -19,10 +19,10 @@ namespace PhotoEditor {
 
 		public Image Photo { get; private set; }
 
-		private string fileName;
+		private string fullFileName;
 		private int brightnessBarValue;
 
-		public Edit(Image image, string fileName) {
+		public Edit(Image image, string fullFileName) {
 
 			InitializeComponent();
 
@@ -31,14 +31,14 @@ namespace PhotoEditor {
 				throw new ArgumentNullException(nameof(image));
 			}
 
-			if (fileName == null) {
+			if (fullFileName == null) {
 
-				throw new ArgumentNullException(nameof(fileName));
+				throw new ArgumentNullException(nameof(fullFileName));
 			}
 
 			this.Photo = (Image)image.Clone();
 			pictureBox1.Image = this.Photo;
-			this.fileName = fileName;
+			this.fullFileName = fullFileName;
 		}
 
 		private void CancelButton_Click(object sender, EventArgs e) {
@@ -49,7 +49,7 @@ namespace PhotoEditor {
 		private void SaveButton_Click(object sender, EventArgs e) {
 
 			this.Photo = pictureBox1.Image;
-			Photo.Save(fileName, ImageFormat.Jpeg);
+			Photo.Save(fullFileName, ImageFormat.Jpeg);
 			this.Close();
 		}
 
@@ -57,10 +57,10 @@ namespace PhotoEditor {
 
 			SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-			int indexOfFinalBackSlash = fileName.LastIndexOf('\\');
+			int indexOfFinalBackSlash = fullFileName.LastIndexOf('\\');
 
-			saveFileDialog.InitialDirectory = fileName.Substring(0, indexOfFinalBackSlash);
-			saveFileDialog.FileName = fileName.Substring(indexOfFinalBackSlash + 1, fileName.Length - indexOfFinalBackSlash - 1);
+			saveFileDialog.InitialDirectory = fullFileName.Substring(0, indexOfFinalBackSlash);
+			saveFileDialog.FileName = fullFileName.Substring(indexOfFinalBackSlash + 1, fullFileName.Length - indexOfFinalBackSlash - 1);
 			saveFileDialog.Filter = "JPeg Image|*.jpg";
 			saveFileDialog.DefaultExt = ".jpg";
 			saveFileDialog.AddExtension = true;
@@ -68,8 +68,8 @@ namespace PhotoEditor {
 			if (saveFileDialog.ShowDialog() == DialogResult.OK) {
 
 				this.Photo = pictureBox1.Image;
-				this.fileName = saveFileDialog.FileName;
-				Photo.Save(fileName, ImageFormat.Jpeg);
+				this.fullFileName = saveFileDialog.FileName;
+				Photo.Save(fullFileName, ImageFormat.Jpeg);
 				this.Close();
 			}
 		}
