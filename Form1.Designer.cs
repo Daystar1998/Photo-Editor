@@ -44,7 +44,12 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.menuStrip3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -157,26 +162,23 @@
 			// 
 			// treeView1
 			// 
-			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-			this.treeView1.Location = new System.Drawing.Point(16, 47);
-			this.treeView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.treeView1.Location = new System.Drawing.Point(0, 0);
+			this.treeView1.Margin = new System.Windows.Forms.Padding(2);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(132, 294);
+			this.treeView1.Size = new System.Drawing.Size(147, 298);
 			this.treeView1.TabIndex = 3;
 			this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
 			// 
 			// listView1
 			// 
-			this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.HideSelection = false;
-			this.listView1.Location = new System.Drawing.Point(166, 47);
+			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(352, 293);
+			this.listView1.Size = new System.Drawing.Size(350, 298);
 			this.listView1.TabIndex = 4;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
@@ -190,17 +192,34 @@
 			this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
 			this.progressBar1.TabIndex = 5;
 			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.splitContainer1.Location = new System.Drawing.Point(16, 51);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.listView1);
+			this.splitContainer1.Size = new System.Drawing.Size(501, 298);
+			this.splitContainer1.SplitterDistance = 147;
+			this.splitContainer1.TabIndex = 6;
+			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(532, 361);
+			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.progressBar1);
-			this.Controls.Add(this.listView1);
-			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.menuStrip1);
 			this.Controls.Add(this.menuStrip3);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
 			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -210,6 +229,10 @@
 			this.Load += new System.EventHandler(this.Main_Load);
 			this.menuStrip3.ResumeLayout(false);
 			this.menuStrip3.PerformLayout();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -232,6 +255,7 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ProgressBar progressBar1;
-    }
+		private System.Windows.Forms.SplitContainer splitContainer1;
+	}
 }
 
