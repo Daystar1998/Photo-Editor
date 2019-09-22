@@ -105,7 +105,7 @@ namespace PhotoEditor
                 string filePath = openFile.FileName;
                 if(Path.GetExtension(filePath) != ".jpg")
                 {
-                    MessageBox.Show("Must Choose a '.jpg' file.");
+                    MessageBox.Show("Must Choose a '.jpg' file.", "Filetype Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
