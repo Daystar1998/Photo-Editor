@@ -85,6 +85,10 @@ namespace PhotoEditor
                 {
                     if (cancelled.IsCancellationRequested)
                     {
+                        Invoke((Action)delegate ()
+                        {
+                            listView1.Items.Clear();
+                        });
                         break;
                     }
                     ListViewItem item = null;
