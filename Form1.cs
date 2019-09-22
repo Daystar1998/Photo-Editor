@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 
@@ -14,6 +15,8 @@ namespace PhotoEditor
 {
     public partial class Main : Form
     {
+        public static CancellationTokenSource canceler = new CancellationTokenSource();
+        CancellationToken token = canceler.Token;
         public Main()
         {
             InitializeComponent();
@@ -58,7 +61,7 @@ namespace PhotoEditor
             }
         }
 
-        async Task GetFiles(DirectoryInfo filePath)
+        async Task GetFiles(DirectoryInfo filePath, CancellationToken cancelled)
         {
 			//When loading the images from disk into the ListView, you will need to use an async method and Task so the UI
 			//thread is not locked. The code below discovers all the JPEG images in a directory
@@ -79,7 +82,10 @@ namespace PhotoEditor
                 });
                 foreach (FileInfo file in homeDir.GetFiles("*.jpg"))
                 {
-                    
+                    if (cancelled.IsCancellationRequested)
+                    {
+                        break;
+                    }
                     ListViewItem item = null;
                     Image img = null;
                     item = new ListViewItem(file.Name, i++);
@@ -106,7 +112,7 @@ namespace PhotoEditor
                     {
 						listView1.Items.Add(item);
 					});
-				}
+                }
                 Invoke((Action)delegate ()
                 {
                     //Cursor.Current = Cursors.Default;
@@ -197,7 +203,12 @@ namespace PhotoEditor
             listView1.Items.Clear();
             DirectoryInfo nodeDirInfo = (DirectoryInfo)selected.Tag;
 
-            await GetFiles(nodeDirInfo);
+            canceler.Cancel();
+            canceler.Dispose();
+            canceler = new CancellationTokenSource();
+            token = canceler.Token;
+
+            await GetFiles(nodeDirInfo, token);
 
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
@@ -226,7 +237,7 @@ namespace PhotoEditor
         private async void Main_Load(object sender, EventArgs e)
         {
 			DirectoryInfo nodeDirInfo = (DirectoryInfo)treeView1.Nodes[0].Tag;
-			await GetFiles(nodeDirInfo);
+			await GetFiles(nodeDirInfo, token);
 
 			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 		}
