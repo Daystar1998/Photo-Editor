@@ -21,7 +21,7 @@ namespace PhotoEditor
         public Main()
         {
             InitializeComponent();
-            PopulateTreeView(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)); //Defaults to the solution folder
+            PopulateTreeView(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures));
 			detailToolStripMenuItem_Click(this, null);
 
 			listView1.Columns.Add("Name", -2, HorizontalAlignment.Left);
