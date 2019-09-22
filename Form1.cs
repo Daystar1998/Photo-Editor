@@ -133,7 +133,9 @@ namespace PhotoEditor
         {
             //Directly locates an image
             OpenFileDialog openFile = new OpenFileDialog();
-            if(openFile.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+			openFile.Filter = "JPeg Image| *.jpg";
+
+			if (openFile.ShowDialog()== System.Windows.Forms.DialogResult.OK)
             {
                 string filePath = openFile.FileName;
                 if(Path.GetExtension(filePath) != ".jpg")
