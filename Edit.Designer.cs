@@ -156,6 +156,7 @@
 			// saveButton
 			// 
 			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.saveButton.DialogResult = System.Windows.Forms.DialogResult.No;
 			this.saveButton.Location = new System.Drawing.Point(301, 412);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(75, 23);
@@ -166,6 +167,7 @@
 			// 
 			// saveAsButton
 			// 
+			this.saveAsButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
 			this.saveAsButton.Location = new System.Drawing.Point(220, 412);
 			this.saveAsButton.Name = "saveAsButton";
 			this.saveAsButton.Size = new System.Drawing.Size(75, 23);

@@ -231,7 +231,16 @@ namespace PhotoEditor
             MemoryStream ms = new MemoryStream(bytes);
             Image img = Image.FromStream(ms);
             Edit editor = new Edit(img, fileName);
-            editor.ShowDialog();
+
+            DialogResult result = editor.ShowDialog();
+
+			if(result == DialogResult.No) {
+
+				listView1.SmallImageList.Images.RemoveByKey(fileName);
+				listView1.SmallImageList.Images.Add(fileName, editor.Photo);
+				listView1.LargeImageList.Images.RemoveByKey(fileName);
+				listView1.LargeImageList.Images.Add(fileName, editor.Photo);
+			}
         }
 
         private async void Main_Load(object sender, EventArgs e)
