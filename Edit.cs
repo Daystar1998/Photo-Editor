@@ -228,6 +228,7 @@ namespace PhotoEditor {
 			invertButton.Enabled = false;
 			saveButton.Enabled = false;
 			cancelButton.Enabled = false;
+			saveAsButton.Enabled = false;
 		}
 
 		private void EnableComponents() {
@@ -237,6 +238,7 @@ namespace PhotoEditor {
 			invertButton.Enabled = true;
 			saveButton.Enabled = true;
 			cancelButton.Enabled = true;
+			saveAsButton.Enabled = true;
 		}
 
 		private void Edit_FormClosed(object sender, FormClosedEventArgs e) {
