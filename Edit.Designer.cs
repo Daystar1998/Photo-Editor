@@ -188,6 +188,7 @@
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "Edit";
 			this.Text = "Edit Photo";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Edit_FormClosed);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).EndInit();
 			this.groupBox1.ResumeLayout(false);

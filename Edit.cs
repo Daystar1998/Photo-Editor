@@ -21,6 +21,7 @@ namespace PhotoEditor {
 
 		private string fullFileName;
 		private int brightnessBarValue;
+		private CancellationTokenSource cancellationTokenSource;
 
 		public Edit(Image image, string fullFileName) {
 
@@ -158,7 +159,7 @@ namespace PhotoEditor {
 
 			Transforming transformingWindow = new Transforming();
 
-			CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+			cancellationTokenSource = new CancellationTokenSource();
 			CancellationToken cancellationToken = cancellationTokenSource.Token;
 
 			transformingWindow.OnCancel += () => {
@@ -166,10 +167,10 @@ namespace PhotoEditor {
 				cancellationTokenSource.Cancel();
 			};
 
+			transformingWindow.Show();
+
 			int offsetX = (this.Width - transformingWindow.Width) / 2;
 			int offsetY = (this.Height - transformingWindow.Height) / 2;
-
-			transformingWindow.Show();
 
 			transformingWindow.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
 
@@ -236,6 +237,14 @@ namespace PhotoEditor {
 			invertButton.Enabled = true;
 			saveButton.Enabled = true;
 			cancelButton.Enabled = true;
+		}
+
+		private void Edit_FormClosed(object sender, FormClosedEventArgs e) {
+
+			if (cancellationTokenSource != null) {
+
+				cancellationTokenSource.Cancel();
+			}
 		}
 	}
 }
