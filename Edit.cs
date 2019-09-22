@@ -172,6 +172,7 @@ namespace PhotoEditor {
 			};
 
 			transformingWindow.Show();
+			transformingWindow.TopMost = true;
 
 			int offsetX = (this.Width - transformingWindow.Width) / 2;
 			int offsetY = (this.Height - transformingWindow.Height) / 2;

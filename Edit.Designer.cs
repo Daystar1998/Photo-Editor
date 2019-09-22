@@ -187,6 +187,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "Edit";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Edit Photo";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Edit_FormClosed);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
