@@ -61,8 +61,11 @@ namespace PhotoEditor
             await Task.Run(() =>
             {
                 DirectoryInfo homeDir = filePath;
-                ImageList imageList = new ImageList();
-                int i = 0;
+                ImageList smallmageList = new ImageList();
+				ImageList largeImageList = new ImageList();
+				largeImageList.ImageSize = new Size(64, 64);
+
+				int i = 0;
                 foreach (FileInfo file in homeDir.GetFiles("*.jpg"))
                 {
                     ListViewItem item = null;
@@ -77,8 +80,9 @@ namespace PhotoEditor
                         byte[] bytes = System.IO.File.ReadAllBytes(file.FullName);
                         MemoryStream ms = new MemoryStream(bytes);
                         img = Image.FromStream(ms); // Use this instead of Image.FromFile()
-                        imageList.Images.Add(file.FullName, img);
-                        Console.WriteLine("Filename: " + file.Name);
+                        smallmageList.Images.Add(file.FullName, img);
+						largeImageList.Images.Add(file.FullName, img);
+						Console.WriteLine("Filename: " + file.Name);
                         Console.WriteLine("Last mod: " + file.LastWriteTime.ToString());
                         Console.WriteLine("File size: " + file.Length);
                     }
@@ -89,9 +93,9 @@ namespace PhotoEditor
                 }
                 Invoke((Action)delegate ()
                 {
-                    listView1.LargeImageList = imageList;
-                    listView1.SmallImageList = imageList;
-                    listView1.StateImageList = imageList;
+                    listView1.SmallImageList = smallmageList;
+					listView1.LargeImageList = largeImageList;
+					listView1.StateImageList = smallmageList;
                 });
             });
         }
