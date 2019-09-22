@@ -71,8 +71,15 @@ namespace PhotoEditor
 				largeImageList.ImageSize = new Size(64, 64);
 
 				int i = 0;
+                Invoke((Action)delegate ()
+                {
+                    //Cursor.Current = Cursors.WaitCursor;
+                    progressBar1.MarqueeAnimationSpeed = 30;
+                    progressBar1.Show();
+                });
                 foreach (FileInfo file in homeDir.GetFiles("*.jpg"))
                 {
+                    
                     ListViewItem item = null;
                     Image img = null;
                     item = new ListViewItem(file.Name, i++);
@@ -95,12 +102,15 @@ namespace PhotoEditor
                     {
                         Console.WriteLine("This is not an image file");
 					}
-					Invoke((Action)delegate () {
+					Invoke((Action)delegate () 
+                    {
 						listView1.Items.Add(item);
 					});
 				}
                 Invoke((Action)delegate ()
                 {
+                    //Cursor.Current = Cursors.Default;
+                    progressBar1.Hide();
                     listView1.SmallImageList = smallmageList;
 					listView1.LargeImageList = largeImageList;
 					listView1.StateImageList = smallmageList;
