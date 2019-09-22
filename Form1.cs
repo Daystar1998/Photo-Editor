@@ -201,9 +201,10 @@ namespace PhotoEditor
             editor.Show();
         }
 
-        private void Main_Load(object sender, EventArgs e)
+        private async void Main_Load(object sender, EventArgs e)
         {
-
-        }
+			DirectoryInfo nodeDirInfo = (DirectoryInfo)treeView1.Nodes[0].Tag;
+			await GetFiles(nodeDirInfo);
+		}
     }
 }
