@@ -217,6 +217,8 @@ namespace PhotoEditor
         {
 			DirectoryInfo nodeDirInfo = (DirectoryInfo)treeView1.Nodes[0].Tag;
 			await GetFiles(nodeDirInfo);
+
+			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 		}
     }
 }
