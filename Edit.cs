@@ -71,6 +71,7 @@ namespace PhotoEditor {
 				this.Photo = pictureBox1.Image;
 				this.FullFileName = saveFileDialog.FileName;
 				Photo.Save(FullFileName, ImageFormat.Jpeg);
+				this.DialogResult = DialogResult.Yes;
 				this.Close();
 			}
 		}

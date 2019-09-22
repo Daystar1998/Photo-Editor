@@ -167,7 +167,6 @@
 			// 
 			// saveAsButton
 			// 
-			this.saveAsButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
 			this.saveAsButton.Location = new System.Drawing.Point(220, 412);
 			this.saveAsButton.Name = "saveAsButton";
 			this.saveAsButton.Size = new System.Drawing.Size(75, 23);
