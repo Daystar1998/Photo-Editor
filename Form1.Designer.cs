@@ -42,6 +42,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,28 +154,37 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(22, 44);
+            this.treeView1.Location = new System.Drawing.Point(22, 58);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(175, 375);
+            this.treeView1.Size = new System.Drawing.Size(175, 361);
             this.treeView1.TabIndex = 3;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(222, 46);
+            this.listView1.Location = new System.Drawing.Point(222, 58);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(468, 372);
+            this.listView1.Size = new System.Drawing.Size(468, 360);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(22, 42);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(668, 10);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 5;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(709, 444);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.menuStrip1);
@@ -208,6 +218,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
