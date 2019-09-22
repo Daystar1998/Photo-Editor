@@ -19,7 +19,11 @@ namespace PhotoEditor
             InitializeComponent();
             PopulateTreeView(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)); //Defaults to the solution folder
 			largeToolStripMenuItem_Click(this, null);
-        }
+
+			listView1.Columns.Add("Name", -2, HorizontalAlignment.Left);
+			listView1.Columns.Add("Date", -2, HorizontalAlignment.Left);
+			listView1.Columns.Add("Size", -2, HorizontalAlignment.Left);
+		}
 
         private void PopulateTreeView(string filePath)
         {
@@ -56,10 +60,10 @@ namespace PhotoEditor
 
         async Task GetFiles(DirectoryInfo filePath)
         {
-            //When loading the images from disk into the ListView, you will need to use an async method and Task so the UI
-            //thread is not locked. The code below discovers all the JPEG images in a directory
+			//When loading the images from disk into the ListView, you will need to use an async method and Task so the UI
+			//thread is not locked. The code below discovers all the JPEG images in a directory
 
-            await Task.Run(() =>
+			await Task.Run(() =>
             {
                 DirectoryInfo homeDir = filePath;
                 ImageList smallmageList = new ImageList();
@@ -72,10 +76,6 @@ namespace PhotoEditor
                     ListViewItem item = null;
                     Image img = null;
                     item = new ListViewItem(file.FullName, i++);
-                    Invoke((Action)delegate ()
-                    {
-                        listView1.Items.Add(item);
-                    });
                     try
                     {
                         byte[] bytes = System.IO.File.ReadAllBytes(file.FullName);
@@ -86,12 +86,18 @@ namespace PhotoEditor
 						Console.WriteLine("Filename: " + file.Name);
                         Console.WriteLine("Last mod: " + file.LastWriteTime.ToString());
                         Console.WriteLine("File size: " + file.Length);
-                    }
+
+						item.SubItems.Add(file.LastWriteTime.ToString());
+						item.SubItems.Add((file.Length / 1000000).ToString() + " MB");
+					}
                     catch
                     {
                         Console.WriteLine("This is not an image file");
-                    }
-                }
+					}
+					Invoke((Action)delegate () {
+						listView1.Items.Add(item);
+					});
+				}
                 Invoke((Action)delegate ()
                 {
                     listView1.SmallImageList = smallmageList;
