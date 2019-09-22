@@ -166,7 +166,12 @@ namespace PhotoEditor {
 				cancellationTokenSource.Cancel();
 			};
 
+			int offsetX = (this.Width - transformingWindow.Width) / 2;
+			int offsetY = (this.Height - transformingWindow.Height) / 2;
+
 			transformingWindow.Show();
+
+			transformingWindow.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
 
 			int amount = Convert.ToInt32(2 * (50 - brightnessBar.Value) * 0.01 * 255);
 
