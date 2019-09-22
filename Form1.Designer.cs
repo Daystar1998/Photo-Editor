@@ -184,6 +184,7 @@
             this.Name = "Main";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Photo Editor";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip3.ResumeLayout(false);
             this.menuStrip3.PerformLayout();
             this.ResumeLayout(false);

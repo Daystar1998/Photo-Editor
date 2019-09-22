@@ -200,6 +200,10 @@ namespace PhotoEditor
             Edit editor = new Edit(img, fileName);
             editor.Show();
         }
-       
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
