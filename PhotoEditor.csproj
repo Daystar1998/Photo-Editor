@@ -137,9 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1024px-Soccer_ball.svg.ico" />
+    <EmbeddedResource Include="res\1024px-Soccer_ball.svg.ico" />
+    <EmbeddedResource Include="res\folder.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="res\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

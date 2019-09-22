@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace PhotoEditor
 {
@@ -285,6 +286,15 @@ namespace PhotoEditor
 			await GetFiles(nodeDirInfo, token);
 
 			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+			string[] res = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+			Stream ms = Assembly.GetExecutingAssembly().GetManifestResourceStream("PhotoEditor.res.folder.jpg");
+			Image img = Image.FromStream(ms);
+
+			ImageList imageList = new ImageList();
+			imageList.Images.Add("folder", img);
+
+			treeView1.ImageList = imageList;
 		}
     }
 }
