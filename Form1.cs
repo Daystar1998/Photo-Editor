@@ -240,6 +240,42 @@ namespace PhotoEditor
 				listView1.SmallImageList.Images.Add(fileName, editor.Photo);
 				listView1.LargeImageList.Images.RemoveByKey(fileName);
 				listView1.LargeImageList.Images.Add(fileName, editor.Photo);
+			} else if(result == DialogResult.Yes) {
+
+				// Check if it is in the same folder
+				if(fileName.Substring(0, fileName.LastIndexOf('\\')) == editor.FullFileName.Substring(0, editor.FullFileName.LastIndexOf('\\'))) {
+
+					fileName = editor.FullFileName;
+
+					FileInfo file = new FileInfo(fileName);
+
+					ListViewItem item = listView1.FindItemWithText(file.Name);
+
+					if (listView1.SmallImageList.Images.ContainsKey(fileName)) {
+
+						listView1.SmallImageList.Images.RemoveByKey(fileName);
+						listView1.LargeImageList.Images.RemoveByKey(fileName);
+
+						item = listView1.FindItemWithText(file.Name);
+					} else {
+
+						item = new ListViewItem(file.Name, i++);
+						listView1.Items.Add(item);
+					}
+
+					try {
+
+						item.SubItems.Clear();
+
+						item.Text = file.Name;
+						item.Tag = file.FullName;
+						item.SubItems.Add(file.LastWriteTime.ToString());
+						item.SubItems.Add((file.Length / 1000000).ToString() + " MB");
+					} catch { }
+
+					listView1.SmallImageList.Images.Add(fileName, editor.Photo);
+					listView1.LargeImageList.Images.Add(fileName, editor.Photo);
+				}
 			}
         }
 

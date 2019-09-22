@@ -18,8 +18,8 @@ namespace PhotoEditor {
 		private delegate Color CalculateNewColor(Color previousColor);
 
 		public Image Photo { get; private set; }
+		public string FullFileName { get; private set; }
 
-		private string fullFileName;
 		private int brightnessBarValue;
 		private CancellationTokenSource cancellationTokenSource;
 
@@ -39,7 +39,7 @@ namespace PhotoEditor {
 
 			this.Photo = (Image)image.Clone();
 			pictureBox1.Image = this.Photo;
-			this.fullFileName = fullFileName;
+			this.FullFileName = fullFileName;
 		}
 
 		private void CancelButton_Click(object sender, EventArgs e) {
@@ -50,7 +50,7 @@ namespace PhotoEditor {
 		private void SaveButton_Click(object sender, EventArgs e) {
 
 			this.Photo = pictureBox1.Image;
-			Photo.Save(fullFileName, ImageFormat.Jpeg);
+			Photo.Save(FullFileName, ImageFormat.Jpeg);
 			this.Close();
 		}
 
@@ -58,10 +58,10 @@ namespace PhotoEditor {
 
 			SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-			int indexOfFinalBackSlash = fullFileName.LastIndexOf('\\');
+			int indexOfFinalBackSlash = FullFileName.LastIndexOf('\\');
 
-			saveFileDialog.InitialDirectory = fullFileName.Substring(0, indexOfFinalBackSlash);
-			saveFileDialog.FileName = fullFileName.Substring(indexOfFinalBackSlash + 1, fullFileName.Length - indexOfFinalBackSlash - 1);
+			saveFileDialog.InitialDirectory = FullFileName.Substring(0, indexOfFinalBackSlash);
+			saveFileDialog.FileName = FullFileName.Substring(indexOfFinalBackSlash + 1, FullFileName.Length - indexOfFinalBackSlash - 1);
 			saveFileDialog.Filter = "JPeg Image|*.jpg";
 			saveFileDialog.DefaultExt = ".jpg";
 			saveFileDialog.AddExtension = true;
@@ -69,8 +69,8 @@ namespace PhotoEditor {
 			if (saveFileDialog.ShowDialog() == DialogResult.OK) {
 
 				this.Photo = pictureBox1.Image;
-				this.fullFileName = saveFileDialog.FileName;
-				Photo.Save(fullFileName, ImageFormat.Jpeg);
+				this.FullFileName = saveFileDialog.FileName;
+				Photo.Save(FullFileName, ImageFormat.Jpeg);
 				this.Close();
 			}
 		}
