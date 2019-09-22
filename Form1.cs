@@ -75,7 +75,8 @@ namespace PhotoEditor
                 {
                     ListViewItem item = null;
                     Image img = null;
-                    item = new ListViewItem(file.FullName, i++);
+                    item = new ListViewItem(file.Name, i++);
+					item.Tag = file.FullName;
                     try
                     {
                         byte[] bytes = System.IO.File.ReadAllBytes(file.FullName);
@@ -203,7 +204,7 @@ namespace PhotoEditor
                 }
                 i++;
             }
-            string fileName = listView1.Items[selectedIndex].Text;
+            string fileName = (string)listView1.Items[selectedIndex].Tag;
             //MessageBox.Show(fileName);
             byte[] bytes = System.IO.File.ReadAllBytes(fileName);
             MemoryStream ms = new MemoryStream(bytes);
