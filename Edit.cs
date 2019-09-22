@@ -91,6 +91,8 @@ namespace PhotoEditor {
 
 		private async void ColorButton_Click(object sender, EventArgs e) {
 
+			DisableComponents();
+
 			ColorDialog colorDialog = new ColorDialog();
 
 			if (colorDialog.ShowDialog() == DialogResult.OK) {
@@ -108,6 +110,8 @@ namespace PhotoEditor {
 
 				await TransformImage(calculateNewColor);
 			}
+
+			EnableComponents();
 		}
 
 		private void BrightnessBar_MouseDown(object sender, MouseEventArgs e) {
