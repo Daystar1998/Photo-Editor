@@ -18,6 +18,7 @@ namespace PhotoEditor
         {
             InitializeComponent();
             PopulateTreeView(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)); //Defaults to the solution folder
+			largeToolStripMenuItem_Click(this, null);
         }
 
         private void PopulateTreeView(string filePath)
