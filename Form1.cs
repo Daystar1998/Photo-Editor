@@ -231,7 +231,7 @@ namespace PhotoEditor
             MemoryStream ms = new MemoryStream(bytes);
             Image img = Image.FromStream(ms);
             Edit editor = new Edit(img, fileName);
-            editor.Show();
+            editor.ShowDialog();
         }
 
         private async void Main_Load(object sender, EventArgs e)
